@@ -1,0 +1,16 @@
+{
+  "name": "october-test",
+  "version": "1.0.0",
+  "main": "src/index.ts",
+  "scripts": {
+    "build:watch": "npx tsc -w"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Nonudian/october-test.git"
+  },
+  "author": "William CHAZOT",
+  "devDependencies": {
+    "typescript": "^4.7.4"
+  }
+}
