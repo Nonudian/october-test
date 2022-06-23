@@ -1,7 +1,6 @@
-const APPLICATION_PORT = 8080 // Could be an env variable
+const APPLICATION_PORT = 3000 // Could be an env variable
 
 export {
-    APPLICATION_PORT,
-    /* ... */
+  APPLICATION_PORT,
+  /* ... */
 }
-
