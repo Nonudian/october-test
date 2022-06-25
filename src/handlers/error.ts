@@ -1,3 +1,4 @@
+import { AxiosError } from 'axios'
 import type { NextFunction, Request, Response } from 'express'
 import { ZodError } from 'zod'
 
@@ -7,13 +8,18 @@ import { ZodError } from 'zod'
  * @returns the json response with error information.
  */
 export const error = (
-  err: Error | ZodError,
+  err: Error | ZodError | AxiosError,
   _req: Request,
   res: Response,
   _next: NextFunction
 ) => {
   if (err instanceof ZodError)
     return res.status(400).json({ error: 'Payload error!', stack: err.issues })
+
+  if (err instanceof AxiosError)
+    return res
+      .status(err.response?.status ?? 500)
+      .json({ error: 'Axios error!', stack: err })
 
   return res.status(500).json({
     error: 'Unhandled internal server error!',
