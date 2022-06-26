@@ -11,6 +11,22 @@ Several commands could be used
 - `npm run dev` to both build and start the server. It reiterates if changes are detected.
 - `npm run start` to start the server from built `/dist` folder.
 
+## How is it structure/architecture
+
+In the `/src` folder, there are several subfolders
+
+- `/handlers` containing used middlewares/handlers, like `cache` and `error` handlers.
+- `/helpers` containing helpul functions/wrappers or types, like for `route` setup or external `api` calls.
+- `/routes` containing one route (for now), the `/phone` folder, divided in 4 files
+  - `phone.route.ts` where is handle the HTTP route setup.
+  - `phone.schema.ts` where is represent the input validation schema.
+  - `phone.service.ts` where is implemented the full business logic to retrieve data.
+  - `phone.types.ts` where useful types for external API are listed.
+- `config.ts` file, that play the role of .env file
+- `index.ts` file, where all express server is setup.
+
+Several `index.ts` file present in some folders are used to export things in the same basket.
+
 ## On what is it based ?
 
 My work is based on two external API
@@ -35,3 +51,15 @@ The date will take the form `{ data: 'No phone found for this company.' }`.
 Both those API need a token to be generated/provided to be able to test them. And for both, an account is required.
 
 Here are some request test from Insomnia tool, make on the only one GET `/phone` route.
+
+![experdeco](https://user-images.githubusercontent.com/30266205/175837409-c343f680-e0dc-489d-b1d9-5f6bc405f727.png)
+![jardillier](https://user-images.githubusercontent.com/30266205/175837396-0f1826ed-781d-4e53-8458-760f2e99f27f.png)
+![paris_atelier](https://user-images.githubusercontent.com/30266205/175837400-0eb0df82-19bb-4db9-9f6e-9bd6c6b5c5e7.png)
+![hotel](https://user-images.githubusercontent.com/30266205/175837404-ec390b1f-a520-4661-8e76-12e8d91089c1.png)
+
+## Other interesting things
+
+I've included a cache system to avoid sending several identical requests.
+We can easily see that process time is highly reduced with the mechanism.
+
+![cache](https://user-images.githubusercontent.com/30266205/175837559-e6f1be9e-5c4d-4f52-bffd-a5486740041e.png)
