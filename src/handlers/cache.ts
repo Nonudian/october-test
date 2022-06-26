@@ -1,9 +1,8 @@
 import LRU from 'lru-cache'
+import { MAX_STORED_ITEMS, MAX_TTL } from '../config'
 
-/*
- * Cache handler, could be replaced by a Redis instance in more complex API.
- */
+/* Cache handler (could be replaced by a Redis instance in more complex API) */
 export const cache = new LRU({
-  max: 500,
-  ttl: 300000 /* 5 minutes */,
+  max: MAX_STORED_ITEMS,
+  ttl: MAX_TTL,
 })

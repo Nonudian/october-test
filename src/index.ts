@@ -4,27 +4,17 @@ import { APPLICATION_PORT } from './config'
 import { error } from './handlers'
 import { routes } from './routes'
 
-/**
- * Setup express application
- */
+/* Setup express application */
 const app = express()
 
-/**
- * Setup middlewares
- */
+/* Connect basic middlewares */
 app.use(json(), morgan('tiny'))
 
-/**
- * Setup routes
- */
+/* Connect routes */
 app.use(routes)
 
-/**
- * Setup error handler (should be the last!)
- */
+/* Connect error handler (should be the last for 'next' calls!) */
 app.use(error)
 
-/**
- * Setup server listening
- */
-app.listen(APPLICATION_PORT, () => console.log('Server is launched!'))
+/* Launch server */
+app.listen(APPLICATION_PORT, () => console.log('🚀 Server is launched!'))

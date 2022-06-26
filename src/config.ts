@@ -1,6 +1,8 @@
-const APPLICATION_PORT = 3000 // Could be an env variable
+/* Server config constants (Could be stored as environment variable) */
+const APPLICATION_PORT = 3000
 
-export {
-  APPLICATION_PORT,
-  /* ... */
-}
+/* Cache config constants */
+const MAX_STORED_ITEMS = 500
+const MAX_TTL = 300000 // 5 minutes
+
+export { APPLICATION_PORT, MAX_STORED_ITEMS, MAX_TTL /* ... */ }
