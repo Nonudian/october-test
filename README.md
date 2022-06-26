@@ -63,3 +63,7 @@ I've included a cache system to avoid sending several identical requests.
 We can easily see that process time is highly reduced with the mechanism.
 
 ![cache](https://user-images.githubusercontent.com/30266205/175837559-e6f1be9e-5c4d-4f52-bffd-a5486740041e.png)
+
+## Author
+
+**William CHAZOT (Nonudian)**
