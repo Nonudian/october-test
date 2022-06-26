@@ -18,14 +18,14 @@ In the `/src` folder, there are several subfolders
 - `/handlers` containing used middlewares/handlers, like `cache` and `error` handlers.
 - `/helpers` containing helpul functions/wrappers or types, like for `route` setup or external `api` calls.
 - `/routes` containing one route (for now), the `/phone` folder, divided in 4 files
-  - `phone.route.ts` where is handle the HTTP route setup.
-  - `phone.schema.ts` where is represent the input validation schema.
+  - `phone.route.ts` where is handled the HTTP route setup.
+  - `phone.schema.ts` where is represented the input validation schema.
   - `phone.service.ts` where is implemented the full business logic to retrieve data.
-  - `phone.types.ts` where useful types for external API are listed.
-- `config.ts` file, that play the role of .env file
-- `index.ts` file, where all express server is setup.
+  - `phone.types.ts` where are listed useful types for external API.
+- `config.ts` file, that play the role of .env file.
+- `index.ts` main file, where all express server is setup.
 
-Several `index.ts` file present in some folders are used to export things in the same basket.
+Several `index.ts` files present in some folders are used to export things in the same basket.
 
 ## On what is it based ?
 
