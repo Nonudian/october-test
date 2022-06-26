@@ -1,8 +1,6 @@
 import { z } from 'zod'
 
-/**
- * Payload schema for our company
- */
+/* Payload schema for our company */
 export const CompanyPayloadSchema = z.object({
   name: z.string().min(1),
   siren: z

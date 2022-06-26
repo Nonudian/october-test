@@ -1,40 +1,17 @@
 import axios from 'axios'
-import { Router } from 'express'
-import { cache, catchAsync } from '../../handlers'
+import { cache } from '../../handlers'
+import { encodeQueryString, registerRoutes } from '../../helpers'
 import { CompanyPayloadSchema } from './company.payload'
+import type {
+  DatastoreResponse,
+  LegalUnit,
+  SireneResponse,
+} from './company.types'
 
-const CompanyRoute = Router()
-
-interface LegalUnitPeriod {
-  denominationUniteLegale: string
-}
-
-interface LegalUnit {
-  siren: string
-  periodesUniteLegale: Array<LegalUnitPeriod>
-}
-
-interface SireneResponse {
-  unitesLegales: Array<LegalUnit>
-}
-
-interface DatastoreResponse {
-  portable: string | null
-  telfixe: string | null
-  tel: string | null
-}
-
-/**
- * Encode given string by replacing all spaces by '+'.
- * Useful for URL query params.
- *
- * @param string - The string to encode.
- * @returns The encoded string.
- */
-const encodeSpaces = (string: string) => string.replace(/\s/g, '+')
+const prefixPhone = (phone: string) => phone.replace(/^[0]/, '+33')
 
 const checkSiren = async (name: string, siren?: string) => {
-  const encodedName = encodeSpaces(name)
+  const encodedName = encodeQueryString(name)
 
   const params = new URLSearchParams({
     q: `(periode(denominationUniteLegale:*${encodedName}*) OR siren:${siren}) AND -periode(etatAdministratifUniteLegale:C)`,
@@ -78,9 +55,9 @@ const checkPhone = async (name: string, siren: string) => {
   )
 
   const phone = {
-    portable: data.portable,
-    telfixe: data.telfixe,
-    tel: data.tel,
+    portable: data.portable ? prefixPhone(data.portable) : data.portable,
+    telfixe: data.telfixe ? prefixPhone(data.telfixe) : data.telfixe,
+    tel: data.tel ? prefixPhone(data.tel) : data.tel,
   }
 
   cache.set(`${name}:${siren}`, { phone })
@@ -88,8 +65,10 @@ const checkPhone = async (name: string, siren: string) => {
   return phone
 }
 
-CompanyRoute.route('/company').get(
-  catchAsync(async (req) => {
+export const CompanyRoute = registerRoutes({
+  prefix: '/company',
+  method: 'get',
+  callback: async (req) => {
     const { name, siren } = CompanyPayloadSchema.strict().parse(req.body)
 
     /* PHASE 1: Make checks on input data. */
@@ -98,20 +77,17 @@ CompanyRoute.route('/company').get(
       : await checkSiren(name, siren)
 
     /* PHASE 2: Retrieve phone number based on siren. */
-    const phone = cache.has(`${name}:${siren}`)
-      ? (cache.get(`${name}:${siren}`) as string)
-      : await checkPhone(name, unit.siren)
+    // const phone = cache.has(`${name}:${siren}`)
+    //   ? (cache.get(`${name}:${siren}`) as string)
+    //   : await checkPhone(name, unit.siren)
 
     /* PHASE 3: Check back retrieved data to provide. */
-
-    //TODO: change 0 to +33
     //TODO: analyze output data (PHASE 3)
+
     //TODO: cache by property (because now it returns not phone but unit in cache)
     //TODO: better handle types and structure
     //TODO: move code into service file
 
-    return phone
-  })
-)
-
-export { CompanyRoute }
+    return { ...unit }
+  },
+})

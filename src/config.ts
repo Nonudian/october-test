@@ -1,4 +1,4 @@
-/* Server config constants (Could be stored as environment variable) */
+/* Server config constants (could be stored as environment variable) */
 const APPLICATION_PORT = 3000
 
 /* Cache config constants */
