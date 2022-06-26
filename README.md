@@ -11,7 +11,7 @@ Several commands could be used
 - `npm run dev` to both build and start the server. It reiterates if changes are detected.
 - `npm run start` to start the server from built `/dist` folder.
 
-## How is it structure/architecture
+## How is it structured/architectured ?
 
 In the `/src` folder, there are several subfolders
 
