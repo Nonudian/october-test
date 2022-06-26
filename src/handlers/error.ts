@@ -22,10 +22,14 @@ export const error = (
       .status(400)
       .json({ error: '🛑 Payload error!', stack: err.issues })
 
-  if (err instanceof AxiosError)
+  if (err instanceof AxiosError) {
+    if (err.response?.status === 404)
+      return res.status(200).json({ data: 'No phone found for this company.' })
+
     return res
       .status(err.response?.status ?? 500)
       .json({ error: '⛔ Axios error!', stack: err })
+  }
 
   return res.status(500).json({
     error: '🔥 Caught but unhandled internal server error!',

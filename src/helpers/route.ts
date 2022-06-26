@@ -2,6 +2,7 @@ import type { IRoute, NextFunction, Request, Response } from 'express'
 import { Router } from 'express'
 import type { z } from 'zod'
 import type { ErrorInstance } from '../handlers/error'
+import type { NonEmptyArray } from './types'
 
 type RouteCallback<U extends z.AnyZodObject> = (
   input: z.infer<U>,
@@ -41,9 +42,6 @@ interface RouteRegistration<T extends string, U extends z.AnyZodObject> {
   validation: /* payload validation schema */ U
   callback: /* async route callback */ RouteCallback<U>
 }
-
-/* Array with at least one value */
-type NonEmptyArray<T> = [T, ...Array<T>]
 
 /**
  * Register all routes from the given configuration list.

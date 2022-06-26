@@ -1,20 +1,22 @@
 import type { Nullable } from '../../helpers'
 
-interface LegalUnitPeriod {
-  denominationUniteLegale: string
+/* Sirene API response, with their used french terms as strings */
+export interface SireneAPIResponse {
+  ['header']: { ['nombre']: number }
+  ['unitesLegales']: Array<Company>
 }
 
-export interface LegalUnit {
-  siren: string
-  periodesUniteLegale: Array<LegalUnitPeriod>
+export interface Company {
+  ['siren']: string
+  ['dateDernierTraitementUniteLegale']: string
+  ['periodesUniteLegale']: Array<{
+    ['denominationUniteLegale']: string
+  }>
 }
 
-export interface SireneResponse {
-  unitesLegales: Array<LegalUnit>
-}
-
-export interface DatastoreResponse {
-  portable: Nullable<string>
-  telfixe: Nullable<string>
-  tel: Nullable<string>
+/* Datastore API response, with their used french terms as strings */
+export interface DatastoreAPIResponse {
+  ['portable']: Nullable<string>
+  ['telfixe']: Nullable<string>
+  ['tel']: Nullable<string>
 }
