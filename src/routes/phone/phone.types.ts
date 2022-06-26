@@ -1,3 +1,5 @@
+import type { Nullable } from '../../helpers'
+
 interface LegalUnitPeriod {
   denominationUniteLegale: string
 }
@@ -12,7 +14,7 @@ export interface SireneResponse {
 }
 
 export interface DatastoreResponse {
-  portable: string | null
-  telfixe: string | null
-  tel: string | null
+  portable: Nullable<string>
+  telfixe: Nullable<string>
+  tel: Nullable<string>
 }

@@ -1,13 +1,13 @@
-import { CompanyRoute } from './company/company.route'
+import { PhoneRoutes } from './phone/phone.route'
 
 /* Routes */
-export const routes = [CompanyRoute /* ...other routes */]
-
-/* Entities */
-// export * from './company/company.entity'
-
-/* Repositories */
-// export * from './company/company.repository'
+export const routes = [PhoneRoutes /* ...and other routes */]
 
 /* Services */
-// export * from './company/company.service'
+export * from './phone/phone.service'
+
+/* Repositories (to implement if there is database persistence) */
+// export * from './company/company.repository'
+
+/* Entities/Models (to implement if there is database persistence) */
+// export * from './company/company.entity'

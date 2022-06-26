@@ -8,7 +8,7 @@ import { routes } from './routes'
 const app = express()
 
 /* Connect basic middlewares */
-app.use(json(), morgan('tiny'))
+app.use(json(), morgan('dev'))
 
 /* Connect routes */
 app.use(routes)
