@@ -25,13 +25,13 @@ In the `/src` folder, there are several subfolders
 - `config.ts` file, that play the role of .env file.
 - `index.ts` main file, where all express server is setup.
 
-Several `index.ts` files present in some folders are used to export things in the same basket.
+Several `index.ts` files present in some folders are used to export things in the same set.
 
 ## On what is it based ?
 
 My work is based on two external API
 
-- [`Government Sirene API`](https://api.gouv.fr/documentation/sirene_v3), a public API that reference a huge amount of information about companies, like siren, activity periods, etc. This is a fiable API because provided by the government itself (by INSEE).
+- [`Government Sirene API`](https://api.gouv.fr/documentation/sirene_v3), a public API that references a huge amount of information about companies, like siren, activity periods, etc. This is a fiable API because provided by the government itself (by INSEE).
 - [`IDAIA Group API Data Store`](https://api.api-datastore.com/doc/index.html), a buyable API solution, but providing 100 free requests as demo version. Like the above API, it provides same but additional information, like phone numbers (mobile or landline/work phone).
 
 ## How it works ?
