@@ -49,8 +49,7 @@ The date will take the form `{ data: 'No phone found for this company.' }`.
 ## How to test it ?
 
 Both those API need a token to be generated/provided to be able to test them. And for both, an account is required.
-
-Here are some request test from Insomnia tool, make on the only one GET `/phone` route.
+Here are some request tests from Insomnia tool, make on the only one GET `/phone` route.
 
 ![experdeco](https://user-images.githubusercontent.com/30266205/175837409-c343f680-e0dc-489d-b1d9-5f6bc405f727.png)
 ![jardillier](https://user-images.githubusercontent.com/30266205/175837396-0f1826ed-781d-4e53-8458-760f2e99f27f.png)
